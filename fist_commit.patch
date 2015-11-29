@@ -1,0 +1,1564 @@
+Index: app/src/main/java/com/thomas/game_2048/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/thomas/game_2048/MainActivity.java	(revision )
++++ app/src/main/java/com/thomas/game_2048/MainActivity.java	(revision )
+@@ -0,0 +1,77 @@
++package com.thomas.game_2048;
++
++import android.graphics.Color;
++import android.os.Bundle;
++import android.os.Message;
++import android.support.design.widget.FloatingActionButton;
++import android.support.design.widget.Snackbar;
++import android.support.v7.app.AppCompatActivity;
++import android.support.v7.widget.Toolbar;
++import android.view.View;
++import android.view.Menu;
++import android.view.MenuItem;
++import android.widget.TextView;
++
++
++public class MainActivity extends AppCompatActivity {
++
++    public TextView tvScore;
++    private Toolbar toolbar;
++    public static MainActivity mainActivity = null;
++
++    public MainActivity() {
++        mainActivity = this;
++    }
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_main);
++        toolbar=(Toolbar)findViewById(R.id.Id_toolbar);
++        setSupportActionBar(toolbar);
++        tvScore=(TextView)findViewById(R.id.Id_tvScore);
++        tvScore.setTextSize(15);
++
++
++
++        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
++            @Override
++            public boolean onMenuItemClick(MenuItem item) {
++                switch (item.getItemId()) {
++                    case R.id.Id_new_game:
++                        System.out.println("新游戏");
++                        GameView.getGameView().startGame();
++                        break;
++                    case R.id.Id_share:
++                        System.out.println("分享");
++                        break;
++                }
++                return true;
++            }
++        });
++
++    }
++
++
++    public static MainActivity getMainActivity(){
++        return mainActivity;
++    }
++
++
++
++    public void showScore(int scroe){
++        tvScore.setText(scroe+"");
++    }
++
++
++
++
++    @Override
++    public boolean onCreateOptionsMenu(Menu menu) {
++        // Inflate the menu; this adds items to the action bar if it is present.
++        getMenuInflater().inflate(R.menu.menu_main, menu);
++        return true;
++    }
++
++
++}
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gradle/wrapper/gradle-wrapper.properties	(revision )
++++ gradle/wrapper/gradle-wrapper.properties	(revision )
+@@ -0,0 +1,6 @@
++#Fri Nov 20 15:20:35 CST 2015
++distributionBase=GRADLE_USER_HOME
++distributionPath=wrapper/dists
++zipStoreBase=GRADLE_USER_HOME
++zipStorePath=wrapper/dists
++distributionUrl=https\://services.gradle.org/distributions/gradle-2.4-all.zip
+Index: .idea/copyright/profiles_settings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/copyright/profiles_settings.xml	(revision )
++++ .idea/copyright/profiles_settings.xml	(revision )
+@@ -0,0 +1,3 @@
++<component name="CopyrightManager">
++  <settings default="" />
++</component>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision )
++++ .idea/vcs.xml	(revision )
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision )
++++ .idea/misc.xml	(revision )
+@@ -0,0 +1,46 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="EntryPointsManager">
++    <entry_points version="2.0" />
++  </component>
++  <component name="NullableNotNullManager">
++    <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
++    <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
++    <option name="myNullables">
++      <value>
++        <list size="4">
++          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
++          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
++          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.Nullable" />
++          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.Nullable" />
++        </list>
++      </value>
++    </option>
++    <option name="myNotNulls">
++      <value>
++        <list size="4">
++          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
++          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
++          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
++          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.NonNull" />
++        </list>
++      </value>
++    </option>
++  </component>
++  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
++    <OptionsSetting value="true" id="Add" />
++    <OptionsSetting value="true" id="Remove" />
++    <OptionsSetting value="true" id="Checkout" />
++    <OptionsSetting value="true" id="Update" />
++    <OptionsSetting value="true" id="Status" />
++    <OptionsSetting value="true" id="Edit" />
++    <ConfirmationsSetting value="0" id="Add" />
++    <ConfirmationsSetting value="0" id="Remove" />
++  </component>
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/build/classes" />
++  </component>
++  <component name="ProjectType">
++    <option name="id" value="Android" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/compiler.xml	(revision )
++++ .idea/compiler.xml	(revision )
+@@ -0,0 +1,22 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CompilerConfiguration">
++    <resourceExtensions />
++    <wildcardResourcePatterns>
++      <entry name="!?*.java" />
++      <entry name="!?*.form" />
++      <entry name="!?*.class" />
++      <entry name="!?*.groovy" />
++      <entry name="!?*.scala" />
++      <entry name="!?*.flex" />
++      <entry name="!?*.kt" />
++      <entry name="!?*.clj" />
++      <entry name="!?*.aj" />
++    </wildcardResourcePatterns>
++    <annotationProcessing>
++      <profile default="true" name="Default" enabled="false">
++        <processorPath useClasspath="true" />
++      </profile>
++    </annotationProcessing>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/app.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/app.iml	(revision )
++++ app/app.iml	(revision )
+@@ -0,0 +1,94 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module external.linked.project.id=":app" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" external.system.module.group="Game_2048" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
++  <component name="FacetManager">
++    <facet type="android-gradle" name="Android-Gradle">
++      <configuration>
++        <option name="GRADLE_PROJECT_PATH" value=":app" />
++      </configuration>
++    </facet>
++    <facet type="android" name="Android">
++      <configuration>
++        <option name="SELECTED_BUILD_VARIANT" value="debug" />
++        <option name="SELECTED_TEST_ARTIFACT" value="_android_test_" />
++        <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
++        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
++        <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleDebugAndroidTest" />
++        <option name="COMPILE_JAVA_TEST_TASK_NAME" value="compileDebugAndroidTestSources" />
++        <afterSyncTasks>
++          <task>generateDebugAndroidTestSources</task>
++          <task>generateDebugSources</task>
++        </afterSyncTasks>
++        <option name="ALLOW_USER_CONFIGURATION" value="false" />
++        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
++        <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
++        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res" />
++        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
++      </configuration>
++    </facet>
++  </component>
++  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
++    <output url="file://$MODULE_DIR$/build/intermediates/classes/debug" />
++    <output-test url="file://$MODULE_DIR$/build/intermediates/classes/androidTest/debug" />
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/debug" isTestSource="false" generated="true" />
++      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/debug" isTestSource="false" generated="true" />
++      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
++      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/debug" isTestSource="false" generated="true" />
++      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/debug" type="java-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/resValues/debug" type="java-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/androidTest/debug" isTestSource="true" generated="true" />
++      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/androidTest/debug" isTestSource="true" generated="true" />
++      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/androidTest/debug" isTestSource="true" generated="true" />
++      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/androidTest/debug" isTestSource="true" generated="true" />
++      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/androidTest/debug" type="java-test-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/resValues/androidTest/debug" type="java-test-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/src/debug/res" type="java-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/src/debug/resources" type="java-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/src/debug/assets" type="java-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/src/debug/aidl" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/src/debug/java" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/src/debug/jni" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/src/debug/rs" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/src/main/res" type="java-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/src/main/assets" type="java-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/src/main/aidl" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/src/main/jni" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/src/main/rs" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/assets" type="java-test-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/aidl" isTestSource="true" />
++      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
++      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/jni" isTestSource="true" />
++      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/assets" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/debug" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dependency-cache" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dex" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/pre-dexed" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/tmp" />
++      <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
++      <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
++    </content>
++    <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="library" exported="" name="recyclerview-v7-23.1.1" level="project" />
++    <orderEntry type="library" exported="" name="support-v4-23.1.1" level="project" />
++    <orderEntry type="library" exported="" name="support-annotations-23.1.1" level="project" />
++    <orderEntry type="library" exported="" name="appcompat-v7-23.1.1" level="project" />
++    <orderEntry type="library" exported="" name="design-23.1.1" level="project" />
++  </component>
++</module>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision )
++++ app/src/main/res/values/strings.xml	(revision )
+@@ -0,0 +1,10 @@
++<resources>
++    <string name="app_name">Game_2048</string>
++    <string name="action_settings">Settings</string>
++    <string name="Score">Score</string>
++    <string name="Best">Best</string>
++    <string name="Title">2048</string>
++    <string name="New_Game">New</string>
++    <string name="Share">Share</string>
++
++</resources>
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/colors.xml	(revision )
++++ app/src/main/res/values/colors.xml	(revision )
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <color name="colorPrimary">#EEE4DA</color>
++    <color name="colorPrimaryDark">#303F9F</color>
++    <color name="colorAccent">#FF4081</color>
++</resources>
+Index: .idea/runConfigurations.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/runConfigurations.xml	(revision )
++++ .idea/runConfigurations.xml	(revision )
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RunConfigurationProducerService">
++    <option name="ignoredProducers">
++      <set>
++        <option value="org.jetbrains.plugins.gradle.execution.test.runner.AllInPackageGradleConfigurationProducer" />
++        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestClassGradleConfigurationProducer" />
++        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestMethodGradleConfigurationProducer" />
++      </set>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision )
++++ app/build.gradle	(revision )
+@@ -0,0 +1,27 @@
++apply plugin: 'com.android.application'
++
++android {
++    compileSdkVersion 23
++    buildToolsVersion "23.0.2"
++
++    defaultConfig {
++        applicationId "com.thomas.game_2048"
++        minSdkVersion 15
++        targetSdkVersion 23
++        versionCode 1
++        versionName "1.0"
++    }
++    buildTypes {
++        release {
++            minifyEnabled false
++            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
++        }
++    }
++}
++
++dependencies {
++    compile fileTree(dir: 'libs', include: ['*.jar'])
++    testCompile 'junit:junit:4.12'
++    compile 'com.android.support:appcompat-v7:23.1.1'
++    compile 'com.android.support:design:23.1.1'
++}
+Index: app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/styles.xml	(revision )
++++ app/src/main/res/values/styles.xml	(revision )
+@@ -0,0 +1,17 @@
++<resources>
++
++    <!-- Base application theme. -->
++    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
++        <!-- Customize your theme here. -->
++        <item name="colorPrimary">@color/colorPrimary</item>
++        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
++        <item name="colorAccent">@color/colorAccent</item>
++    </style>
++    <style name="AppTheme.NoActionBar">
++        <item name="windowActionBar">false</item>
++        <item name="windowNoTitle">true</item>
++    </style>
++    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
++    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
++
++</resources>
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .gitignore	(revision )
++++ .gitignore	(revision )
+@@ -0,0 +1,7 @@
++.gradle
++/local.properties
++/.idea/workspace.xml
++/.idea/libraries
++.DS_Store
++/build
++/captures
+Index: gradlew.bat
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gradlew.bat	(revision )
++++ gradlew.bat	(revision )
+@@ -0,0 +1,90 @@
++@if "%DEBUG%" == "" @echo off
++@rem ##########################################################################
++@rem
++@rem  Gradle startup script for Windows
++@rem
++@rem ##########################################################################
++
++@rem Set local scope for the variables with windows NT shell
++if "%OS%"=="Windows_NT" setlocal
++
++@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
++set DEFAULT_JVM_OPTS=
++
++set DIRNAME=%~dp0
++if "%DIRNAME%" == "" set DIRNAME=.
++set APP_BASE_NAME=%~n0
++set APP_HOME=%DIRNAME%
++
++@rem Find java.exe
++if defined JAVA_HOME goto findJavaFromJavaHome
++
++set JAVA_EXE=java.exe
++%JAVA_EXE% -version >NUL 2>&1
++if "%ERRORLEVEL%" == "0" goto init
++
++echo.
++echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
++echo.
++echo Please set the JAVA_HOME variable in your environment to match the
++echo location of your Java installation.
++
++goto fail
++
++:findJavaFromJavaHome
++set JAVA_HOME=%JAVA_HOME:"=%
++set JAVA_EXE=%JAVA_HOME%/bin/java.exe
++
++if exist "%JAVA_EXE%" goto init
++
++echo.
++echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME%
++echo.
++echo Please set the JAVA_HOME variable in your environment to match the
++echo location of your Java installation.
++
++goto fail
++
++:init
++@rem Get command-line arguments, handling Windowz variants
++
++if not "%OS%" == "Windows_NT" goto win9xME_args
++if "%@eval[2+2]" == "4" goto 4NT_args
++
++:win9xME_args
++@rem Slurp the command line arguments.
++set CMD_LINE_ARGS=
++set _SKIP=2
++
++:win9xME_args_slurp
++if "x%~1" == "x" goto execute
++
++set CMD_LINE_ARGS=%*
++goto execute
++
++:4NT_args
++@rem Get arguments from the 4NT Shell from JP Software
++set CMD_LINE_ARGS=%$
++
++:execute
++@rem Setup the command line
++
++set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
++
++@rem Execute Gradle
++"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %CMD_LINE_ARGS%
++
++:end
++@rem End local scope for the variables with windows NT shell
++if "%ERRORLEVEL%"=="0" goto mainEnd
++
++:fail
++rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
++rem the _cmd.exe /c_ return code!
++if  not "" == "%GRADLE_EXIT_CONSOLE%" exit 1
++exit /b 1
++
++:mainEnd
++if "%OS%"=="Windows_NT" endlocal
++
++:omega
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/modules.xml	(revision )
++++ .idea/modules.xml	(revision )
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/Game_2048.iml" filepath="$PROJECT_DIR$/Game_2048.iml" />
++      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/.gitignore	(revision )
++++ app/.gitignore	(revision )
+@@ -0,0 +1,1 @@
++/build
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main.xml	(revision )
++++ app/src/main/res/layout/activity_main.xml	(revision )
+@@ -0,0 +1,71 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".MainActivity"
++    android:orientation="vertical">
++    
++    <android.support.v7.widget.Toolbar
++        android:id="@+id/Id_toolbar"
++        android:layout_width="match_parent"
++        android:layout_height="?attr/actionBarSize"
++        android:background="?attr/colorPrimary"
++        app:title="@string/Title"
++        app:titleTextColor="#ffffff">
++    </android.support.v7.widget.Toolbar>
++
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="48dp"
++        android:orientation="horizontal">
++
++        <TextView
++            android:layout_width="0dp"
++            android:layout_weight="1"
++            android:layout_height="match_parent"
++            android:gravity="center"
++            android:text="@string/Score"
++            android:textSize="15dp"/>
++        <TextView
++            android:id="@+id/Id_tvScore"
++            android:layout_width="0dp"
++            android:layout_weight="1"
++            android:layout_height="match_parent"
++            android:gravity="center"/>
++    </LinearLayout>
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="48dp"
++        android:orientation="horizontal">
++
++        <TextView
++            android:layout_width="0dp"
++            android:layout_weight="1"
++            android:layout_height="match_parent"
++            android:gravity="center"
++            android:text="@string/Best"
++            android:textSize="15dp"/>
++        <TextView
++            android:id="@+id/Id_tvBest"
++            android:layout_width="0dp"
++            android:layout_weight="1"
++            android:layout_height="match_parent"
++            android:gravity="center"/>
++    </LinearLayout>
++
++
++    <com.thomas.game_2048.GameView
++        android:id="@+id/Id_GameView"
++        android:layout_width="match_parent"
++        android:layout_height="0dp"
++        android:layout_weight="1">
++
++    </com.thomas.game_2048.GameView>
++
++
++</LinearLayout>
+Index: gradlew
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gradlew	(revision )
++++ gradlew	(revision )
+@@ -0,0 +1,164 @@
++#!/usr/bin/env bash
++
++##############################################################################
++##
++##  Gradle start up script for UN*X
++##
++##############################################################################
++
++# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
++DEFAULT_JVM_OPTS=""
++
++APP_NAME="Gradle"
++APP_BASE_NAME=`basename "$0"`
++
++# Use the maximum available, or set MAX_FD != -1 to use that value.
++MAX_FD="maximum"
++
++warn ( ) {
++    echo "$*"
++}
++
++die ( ) {
++    echo
++    echo "$*"
++    echo
++    exit 1
++}
++
++# OS specific support (must be 'true' or 'false').
++cygwin=false
++msys=false
++darwin=false
++case "`uname`" in
++  CYGWIN* )
++    cygwin=true
++    ;;
++  Darwin* )
++    darwin=true
++    ;;
++  MINGW* )
++    msys=true
++    ;;
++esac
++
++# For Cygwin, ensure paths are in UNIX format before anything is touched.
++if $cygwin ; then
++    [ -n "$JAVA_HOME" ] && JAVA_HOME=`cygpath --unix "$JAVA_HOME"`
++fi
++
++# Attempt to set APP_HOME
++# Resolve links: $0 may be a link
++PRG="$0"
++# Need this for relative symlinks.
++while [ -h "$PRG" ] ; do
++    ls=`ls -ld "$PRG"`
++    link=`expr "$ls" : '.*-> \(.*\)$'`
++    if expr "$link" : '/.*' > /dev/null; then
++        PRG="$link"
++    else
++        PRG=`dirname "$PRG"`"/$link"
++    fi
++done
++SAVED="`pwd`"
++cd "`dirname \"$PRG\"`/" >&-
++APP_HOME="`pwd -P`"
++cd "$SAVED" >&-
++
++CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
++
++# Determine the Java command to use to start the JVM.
++if [ -n "$JAVA_HOME" ] ; then
++    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
++        # IBM's JDK on AIX uses strange locations for the executables
++        JAVACMD="$JAVA_HOME/jre/sh/java"
++    else
++        JAVACMD="$JAVA_HOME/bin/java"
++    fi
++    if [ ! -x "$JAVACMD" ] ; then
++        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
++
++Please set the JAVA_HOME variable in your environment to match the
++location of your Java installation."
++    fi
++else
++    JAVACMD="java"
++    which java >/dev/null 2>&1 || die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
++
++Please set the JAVA_HOME variable in your environment to match the
++location of your Java installation."
++fi
++
++# Increase the maximum file descriptors if we can.
++if [ "$cygwin" = "false" -a "$darwin" = "false" ] ; then
++    MAX_FD_LIMIT=`ulimit -H -n`
++    if [ $? -eq 0 ] ; then
++        if [ "$MAX_FD" = "maximum" -o "$MAX_FD" = "max" ] ; then
++            MAX_FD="$MAX_FD_LIMIT"
++        fi
++        ulimit -n $MAX_FD
++        if [ $? -ne 0 ] ; then
++            warn "Could not set maximum file descriptor limit: $MAX_FD"
++        fi
++    else
++        warn "Could not query maximum file descriptor limit: $MAX_FD_LIMIT"
++    fi
++fi
++
++# For Darwin, add options to specify how the application appears in the dock
++if $darwin; then
++    GRADLE_OPTS="$GRADLE_OPTS \"-Xdock:name=$APP_NAME\" \"-Xdock:icon=$APP_HOME/media/gradle.icns\""
++fi
++
++# For Cygwin, switch paths to Windows format before running java
++if $cygwin ; then
++    APP_HOME=`cygpath --path --mixed "$APP_HOME"`
++    CLASSPATH=`cygpath --path --mixed "$CLASSPATH"`
++
++    # We build the pattern for arguments to be converted via cygpath
++    ROOTDIRSRAW=`find -L / -maxdepth 1 -mindepth 1 -type d 2>/dev/null`
++    SEP=""
++    for dir in $ROOTDIRSRAW ; do
++        ROOTDIRS="$ROOTDIRS$SEP$dir"
++        SEP="|"
++    done
++    OURCYGPATTERN="(^($ROOTDIRS))"
++    # Add a user-defined pattern to the cygpath arguments
++    if [ "$GRADLE_CYGPATTERN" != "" ] ; then
++        OURCYGPATTERN="$OURCYGPATTERN|($GRADLE_CYGPATTERN)"
++    fi
++    # Now convert the arguments - kludge to limit ourselves to /bin/sh
++    i=0
++    for arg in "$@" ; do
++        CHECK=`echo "$arg"|egrep -c "$OURCYGPATTERN" -`
++        CHECK2=`echo "$arg"|egrep -c "^-"`                                 ### Determine if an option
++
++        if [ $CHECK -ne 0 ] && [ $CHECK2 -eq 0 ] ; then                    ### Added a condition
++            eval `echo args$i`=`cygpath --path --ignore --mixed "$arg"`
++        else
++            eval `echo args$i`="\"$arg\""
++        fi
++        i=$((i+1))
++    done
++    case $i in
++        (0) set -- ;;
++        (1) set -- "$args0" ;;
++        (2) set -- "$args0" "$args1" ;;
++        (3) set -- "$args0" "$args1" "$args2" ;;
++        (4) set -- "$args0" "$args1" "$args2" "$args3" ;;
++        (5) set -- "$args0" "$args1" "$args2" "$args3" "$args4" ;;
++        (6) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" ;;
++        (7) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" ;;
++        (8) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" ;;
++        (9) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" "$args8" ;;
++    esac
++fi
++
++# Split up the JVM_OPTS And GRADLE_OPTS values into an array, following the shell quoting and substitution rules
++function splitJvmOpts() {
++    JVM_OPTS=("$@")
++}
++eval splitJvmOpts $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS
++JVM_OPTS[${#JVM_OPTS[*]}]="-Dorg.gradle.appname=$APP_BASE_NAME"
++
++exec "$JAVACMD" "${JVM_OPTS[@]}" -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"
+Index: gradle.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gradle.properties	(revision )
++++ gradle.properties	(revision )
+@@ -0,0 +1,17 @@
++## Project-wide Gradle settings.
++#
++# For more details on how to configure your build environment visit
++# http://www.gradle.org/docs/current/userguide/build_environment.html
++#
++# Specifies the JVM arguments used for the daemon process.
++# The setting is particularly useful for tweaking memory settings.
++# Default value: -Xmx10248m -XX:MaxPermSize=256m
++# org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8
++#
++# When configured, Gradle will run in incubating parallel mode.
++# This option should only be used with decoupled projects. More details, visit
++# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
++# org.gradle.parallel=true
++#Wed Nov 25 13:20:29 CST 2015
++systemProp.http.proxyHost=127.0.0.1
++systemProp.http.proxyPort=1080
+Index: app/src/main/res/values-v21/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values-v21/styles.xml	(revision )
++++ app/src/main/res/values-v21/styles.xml	(revision )
+@@ -0,0 +1,8 @@
++<resources>>
++    <style name="AppTheme.NoActionBar">
++        <item name="windowActionBar">false</item>
++        <item name="windowNoTitle">true</item>
++        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
++        <item name="android:statusBarColor">@android:color/transparent</item>
++    </style>
++</resources>
+Index: app/src/main/res/values-w820dp/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values-w820dp/dimens.xml	(revision )
++++ app/src/main/res/values-w820dp/dimens.xml	(revision )
+@@ -0,0 +1,6 @@
++<resources>
++    <!-- Example customization of dimensions originally defined in res/values/dimens.xml
++         (such as screen margins) for screens with more than 820dp of available width. This
++         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
++    <dimen name="activity_horizontal_margin">64dp</dimen>
++</resources>
+Index: app/src/main/res/values/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/dimens.xml	(revision )
++++ app/src/main/res/values/dimens.xml	(revision )
+@@ -0,0 +1,6 @@
++<resources>
++    <!-- Default screen margins, per the Android Design guidelines. -->
++    <dimen name="activity_horizontal_margin">16dp</dimen>
++    <dimen name="activity_vertical_margin">16dp</dimen>
++    <dimen name="fab_margin">16dp</dimen>
++</resources>
+Index: app/src/test/java/com/thomas/game_2048/ExampleUnitTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/test/java/com/thomas/game_2048/ExampleUnitTest.java	(revision )
++++ app/src/test/java/com/thomas/game_2048/ExampleUnitTest.java	(revision )
+@@ -0,0 +1,15 @@
++package com.thomas.game_2048;
++
++import org.junit.Test;
++
++import static org.junit.Assert.*;
++
++/**
++ * To work on unit tests, switch the Test Artifact in the Build Variants view.
++ */
++public class ExampleUnitTest {
++    @Test
++    public void addition_isCorrect() throws Exception {
++        assertEquals(4, 2 + 2);
++    }
++}
+\ No newline at end of file
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(revision )
++++ build.gradle	(revision )
+@@ -0,0 +1,23 @@
++// Top-level build file where you can add configuration options common to all sub-projects/modules.
++
++buildscript {
++    repositories {
++        jcenter()
++    }
++    dependencies {
++        classpath 'com.android.tools.build:gradle:1.3.0'
++
++        // NOTE: Do not place your application dependencies here; they belong
++        // in the individual module build.gradle files
++    }
++}
++
++allprojects {
++    repositories {
++        jcenter()
++    }
++}
++
++task clean(type: Delete) {
++    delete rootProject.buildDir
++}
+Index: app/src/main/java/com/thomas/game_2048/GameView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/thomas/game_2048/GameView.java	(revision )
++++ app/src/main/java/com/thomas/game_2048/GameView.java	(revision )
+@@ -0,0 +1,348 @@
++package com.thomas.game_2048;
++
++import android.content.Context;
++import android.graphics.Color;
++import android.graphics.Point;
++import android.support.v7.widget.Toolbar;
++import android.util.AttributeSet;
++import android.view.MotionEvent;
++import android.view.View;
++import android.widget.GridLayout;
++
++import java.util.ArrayList;
++import java.util.List;
++
++/**
++ * Created by thomas on 15-11-20.
++ */
++public class GameView extends GridLayout {
++
++    private Card[][] cards;
++    private List<Point> emptypoints;
++    public int score=0;
++    private boolean moved;
++    public static GameView gameView = null;
++
++
++    public GameView(Context context) {
++        super(context);
++        InitGameView();
++        gameView = this;
++    }
++
++    public GameView(Context context, AttributeSet attrs) {
++        super(context, attrs);
++        InitGameView();
++        gameView = this;
++    }
++
++    public GameView(Context context, AttributeSet attrs, int defStyleAttr) {
++        super(context, attrs, defStyleAttr);
++        InitGameView();
++        gameView = this;
++    }
++
++    private void InitGameView(){
++
++        setColumnCount(4);
++        setBackgroundColor(Color.parseColor("#ffffff"));
++
++        setOnTouchListener(new OnTouchListener() {
++
++            private float startX;
++            private float startY;
++            private float offsetX;
++            private float offsetY;
++
++            @Override
++            public boolean onTouch(View v, MotionEvent event) {
++                switch (event.getAction()) {
++                    case MotionEvent.ACTION_DOWN:
++                        startX = event.getX();
++                        startY = event.getY();
++                        break;
++                    case MotionEvent.ACTION_UP:
++                        offsetX = event.getX() - startX;
++                        offsetY = event.getY() - startY;
++
++                        if (Math.abs(offsetX) > Math.abs(offsetY)) {
++                            if (offsetX < -10) {
++                                //System.out.println("向左");
++                                swipeLeft();
++
++                            } else if (offsetX > 10) {
++                                //System.out.println("向右");
++                                swipeRight();
++                            }
++                        } else if (offsetY < -10) {
++                            //System.out.println("向上");
++                            swipeUp();
++                        } else if (offsetY > 10) {
++                            //System.out.println("向下");
++                            swipeDown();
++                        }
++                        break;
++                }
++                return true;
++            }
++        });
++    }
++
++    @Override
++    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
++        super.onSizeChanged(w, h, oldw, oldh);
++
++        int cardWidth = (Math.min(w,h)-10)/4;
++
++        addCards(cardWidth, cardWidth);
++
++        startGame();
++    }
++
++    private void addCards(int cardWidth,int cardHeight){
++
++        Card card;
++        cards = new Card[4][4];
++
++        for(int y=0;y<4;y++){
++            for(int x=0;x<4;x++){
++
++                card = new Card(getContext());
++                card.setNumber(0);
++                addView(card,cardWidth,cardHeight);
++
++                cards[x][y] = card;
++
++            }
++        }
++
++    }
++
++    private void setCardColor(Card card){
++
++        String bgColor = "";
++        switch (card.getNumber())
++        {
++            case 0:
++                bgColor = "#CCC0B3";
++                break;
++            case 2:
++                bgColor = "#EEE4DA";
++                break;
++            case 4:
++                bgColor = "#EDE0C8";
++                break;
++            case 8:
++                bgColor = "#F2B179";
++                break;
++            case 16:
++                bgColor = "#F49563";
++                break;
++            case 32:
++                bgColor = "#F5794D";
++                break;
++            case 64:
++                bgColor = "#F55D37";
++                break;
++            case 128:
++                bgColor = "#EEE863";
++                break;
++            case 256:
++                bgColor = "#EDB04D";
++                break;
++            case 512:
++                bgColor = "#ECB04D";
++                break;
++            case 1024:
++                bgColor = "#EB9437";
++                break;
++            case 2048:
++                bgColor = "#EA7821";
++                break;
++            default:
++                bgColor = "#EA7821";
++                break;
++        }
++
++        card.getlable().setBackgroundColor(Color.parseColor(bgColor));
++
++    }
++
++    public void startGame(){
++
++        for(int y=0;y<4;y++){
++            for(int x=0;x<4;x++){
++                cards[x][y].setNumber(0);
++                setCardColor(cards[x][y]);
++            }
++        }
++
++        addRandomnumber();
++        addRandomnumber();
++        score=0;
++        MainActivity.getMainActivity().showScore(score);
++    }
++
++
++
++    private void addRandomnumber(){
++
++        emptypoints = new ArrayList<Point>();
++        emptypoints.clear();
++
++        for(int y=0;y<4;y++){
++            for(int x=0;x<4;x++){
++                if(cards[x][y].getNumber()<=0){
++                    emptypoints.add(new Point(x,y));
++                }
++            }
++        }
++
++        Point point = emptypoints.remove((int)(Math.random()*emptypoints.size()));
++        cards[point.x][point.y].setNumber(Math.random() > 0.1 ? 2 : 4);
++        setCardColor(cards[point.x][point.y]);
++
++    }
++
++    private void swipeLeft(){
++
++        moved = false;
++
++        for(int y=0;y<4;y++){
++            for(int x=0;x<4;x++){
++                for(int x1=x+1;x1<4;x1++){
++                    if(cards[x1][y].getNumber()>0){
++                        if(cards[x][y].getNumber()<=0){
++                            cards[x][y].setNumber(cards[x1][y].getNumber());
++                            cards[x1][y].setNumber(0);
++                            x--;
++                            moved=true;
++                        }
++                        else if(cards[x][y].getNumber()==cards[x1][y].getNumber()){
++                            cards[x][y].setNumber(cards[x1][y].getNumber() * 2);
++                            score=score+cards[x][y].getNumber();
++                            MainActivity.getMainActivity().showScore(score);
++                            cards[x1][y].setNumber(0);
++                            moved=true;
++                        }
++                        break;
++                    }
++                }
++            }
++            for(int x=0;x<4;x++){
++                setCardColor(cards[x][y]);
++            }
++        }
++        if(moved){
++            addRandomnumber();
++        }
++
++    }
++
++    private void swipeRight(){
++
++        moved = false;
++
++        for(int y=0;y<4;y++){
++            for(int x=3;x>=0;x--){
++                for(int x1=x-1;x1>=0;x1--){
++                    if(cards[x1][y].getNumber()>0){
++                        if(cards[x][y].getNumber()<=0){
++                            cards[x][y].setNumber(cards[x1][y].getNumber());
++                            cards[x1][y].setNumber(0);
++                            x++;
++                            moved=true;
++                        }
++                        else if(cards[x][y].getNumber()==cards[x1][y].getNumber()){
++                            cards[x][y].setNumber(cards[x1][y].getNumber()*2);
++                            score=score+cards[x][y].getNumber();
++                            MainActivity.getMainActivity().showScore(score);
++                            cards[x1][y].setNumber(0);
++                            moved=true;
++                        }
++                        break;
++                    }
++                }
++            }
++            for(int x=3;x>=0;x--){
++                setCardColor(cards[x][y]);
++            }
++        }
++        if(moved){
++            addRandomnumber();
++        }
++
++    }
++
++    private void swipeUp(){
++        moved = false;
++
++        for(int x=0;x<4;x++){
++            for(int y=0;y<4;y++){
++                for(int y1=y+1;y1<4;y1++){
++                    if(cards[x][y1].getNumber()>0){
++                        if(cards[x][y].getNumber()<=0){
++                            cards[x][y].setNumber(cards[x][y1].getNumber());
++                            cards[x][y1].setNumber(0);
++                            y--;
++                            moved=true;
++                        }else if(cards[x][y].getNumber()==cards[x][y1].getNumber()){
++                            cards[x][y].setNumber(cards[x][y1].getNumber()*2);
++                            score=score+cards[x][y].getNumber();
++                            MainActivity.getMainActivity().showScore(score);
++                            cards[x][y1].setNumber(0);
++                            moved=true;
++                        }
++                        break;
++                    }
++                }
++            }
++            for(int y=0;y<4;y++){
++                setCardColor(cards[x][y]);
++            }
++        }
++        if(moved){
++            addRandomnumber();
++        }
++
++    }
++
++    private void swipeDown(){
++        moved = false;
++
++        for(int x=0;x<4;x++){
++            for(int y=3;y>=0;y--){
++                for(int y1=y-1;y1>=0;y1--){
++                    if(cards[x][y1].getNumber()>0){
++                        if(cards[x][y].getNumber()<=0){
++                            cards[x][y].setNumber(cards[x][y1].getNumber());
++                            cards[x][y1].setNumber(0);
++                            y++;
++                            moved=true;
++                        }
++                        else if(cards[x][y].getNumber()==cards[x][y1].getNumber()){
++                            cards[x][y].setNumber(cards[x][y1].getNumber()*2);
++                            score=score+cards[x][y].getNumber();
++                            MainActivity.getMainActivity().showScore(score);
++                            cards[x][y1].setNumber(0);
++                            moved=true;
++                        }
++                        break;
++                    }
++                }
++            }
++            for(int y=3;y>=0;y--){
++                setCardColor(cards[x][y]);
++            }
++        }
++        if(moved){
++            addRandomnumber();
++        }
++
++    }
++
++    public static GameView getGameView(){
++        return gameView;
++    }
++
++}
+Index: app/proguard-rules.pro
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/proguard-rules.pro	(revision )
++++ app/proguard-rules.pro	(revision )
+@@ -0,0 +1,17 @@
++# Add project specific ProGuard rules here.
++# By default, the flags in this file are appended to flags specified
++# in /home/thomas/Android/Sdk/tools/proguard/proguard-android.txt
++# You can edit the include path and order by changing the proguardFiles
++# directive in build.gradle.
++#
++# For more details, see
++#   http://developer.android.com/guide/developing/tools/proguard.html
++
++# Add any project specific keep options here:
++
++# If your project uses WebView with JS, uncomment the following
++# and specify the fully qualified class name to the JavaScript interface
++# class:
++#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
++#   public *;
++#}
+Index: settings.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- settings.gradle	(revision )
++++ settings.gradle	(revision )
+@@ -0,0 +1,1 @@
++include ':app'
+Index: app/src/androidTest/java/com/thomas/game_2048/ApplicationTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/androidTest/java/com/thomas/game_2048/ApplicationTest.java	(revision )
++++ app/src/androidTest/java/com/thomas/game_2048/ApplicationTest.java	(revision )
+@@ -0,0 +1,13 @@
++package com.thomas.game_2048;
++
++import android.app.Application;
++import android.test.ApplicationTestCase;
++
++/**
++ * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
++ */
++public class ApplicationTest extends ApplicationTestCase<Application> {
++    public ApplicationTest() {
++        super(Application.class);
++    }
++}
+\ No newline at end of file
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- README.md	(revision )
++++ README.md	(revision )
+@@ -0,0 +1,1 @@
++# Game_2048
+Index: Readme.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Readme.md	(revision )
++++ Readme.md	(revision )
+@@ -0,0 +1,1 @@
++#一个2048的简单实现，有空再添加一些必要的注释...
+Index: Game_2048.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Game_2048.iml	(revision )
++++ Game_2048.iml	(revision )
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module external.linked.project.id="Game_2048" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" external.system.module.group="" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
++  <component name="FacetManager">
++    <facet type="java-gradle" name="Java-Gradle">
++      <configuration>
++        <option name="BUILD_FOLDER_PATH" value="$MODULE_DIR$/build" />
++        <option name="BUILDABLE" value="false" />
++      </configuration>
++    </facet>
++  </component>
++  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <excludeFolder url="file://$MODULE_DIR$/.gradle" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/.name
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/.name	(revision )
++++ .idea/.name	(revision )
+@@ -0,0 +1,1 @@
++Game_2048
+\ No newline at end of file
+Index: app/src/main/java/com/thomas/game_2048/Card.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/thomas/game_2048/Card.java	(revision )
++++ app/src/main/java/com/thomas/game_2048/Card.java	(revision )
+@@ -0,0 +1,60 @@
++package com.thomas.game_2048;
++
++import android.content.Context;
++import android.graphics.Color;
++import android.view.Gravity;
++import android.view.ViewGroup;
++import android.widget.FrameLayout;
++import android.widget.TextView;
++
++/**
++ * Created by thomas on 15-11-20.
++ */
++public class Card extends FrameLayout {
++
++    private int number=0;
++    private TextView lable;
++    public Card(Context context) {
++        super(context);
++
++        lable = new TextView(getContext());
++        lable.setTextSize(32);
++        lable.setGravity(Gravity.CENTER);
++        lable.setTextColor(0x33000000);
++        lable.setBackgroundColor(0x33bfbfbf);
++
++
++        LayoutParams lp = new LayoutParams(-1,-1);
++        lp.setMargins(10,10,10,10);
++        addView(lable,lp);
++
++        setNumber(0);
++    }
++
++    public TextView getlable(){
++
++        return lable;
++    }
++
++    public int getNumber() {
++        return number;
++    }
++
++    public void setNumber(int number) {
++        this.number = number;
++
++        if(number<=0){
++            lable.setText("");
++        }
++        else {
++            lable.setText(number + "");
++        }
++
++
++    }
++
++    public boolean equals(Card o) {
++
++        return getNumber() == o.getNumber();
++    }
++}
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/gradle.xml	(revision )
++++ .idea/gradle.xml	(revision )
+@@ -0,0 +1,18 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="GradleSettings">
++    <option name="linkedExternalProjectsSettings">
++      <GradleProjectSettings>
++        <option name="distributionType" value="DEFAULT_WRAPPED" />
++        <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="gradleJvm" value="1.7" />
++        <option name="modules">
++          <set>
++            <option value="$PROJECT_DIR$" />
++            <option value="$PROJECT_DIR$/app" />
++          </set>
++        </option>
++      </GradleProjectSettings>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision )
++++ app/src/main/AndroidManifest.xml	(revision )
+@@ -0,0 +1,24 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.thomas.game_2048" >
++
++    <application
++        android:allowBackup="true"
++        android:icon="@mipmap/ic_launcher"
++        android:label="@string/app_name"
++        android:supportsRtl="true"
++        android:theme="@style/AppTheme" >
++        <activity
++            android:name=".MainActivity"
++            android:label="@string/app_name"
++            android:theme="@style/AppTheme.NoActionBar"
++            android:screenOrientation="portrait">
++            <intent-filter>
++                <action android:name="android.intent.action.MAIN" />
++
++                <category android:name="android.intent.category.LAUNCHER" />
++            </intent-filter>
++        </activity>
++    </application>
++
++</manifest>
+Index: app/src/main/res/menu/menu_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/menu/menu_main.xml	(revision )
++++ app/src/main/res/menu/menu_main.xml	(revision )
+@@ -0,0 +1,17 @@
++<menu xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    tools:context=".MainActivity">
++
++    <item
++        android:id="@+id/Id_new_game"
++        android:title="@string/New_Game"
++        android:orderInCategory="100"
++        app:showAsAction="ifRoom" />
++
++    <item
++        android:id="@+id/Id_share"
++        android:title="@string/Share"
++        android:orderInCategory="100"
++        app:showAsAction="ifRoom" />
++</menu>
